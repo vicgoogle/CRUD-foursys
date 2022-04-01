@@ -9,7 +9,7 @@ yarn
 ```
 
 - Copiar o arquivo .env.example para um novo chamado apenas .env (obs: os campos só foram      preenchidos na .env.example
-  para facilitar a avaliação do projeto)
+  para facilitar a execução do projeto)
 
 - Executar o banco mysql no docker utilizando o arquivo docker-compose.yml do projeto:
 
