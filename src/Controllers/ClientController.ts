@@ -33,7 +33,7 @@ export default class ClientController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.body;
+    const { id } = request.params;
 
     const deleteService = container.resolve(DeleteService);
 

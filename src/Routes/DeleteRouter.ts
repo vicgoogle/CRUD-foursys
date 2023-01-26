@@ -6,8 +6,7 @@ const DeleteRouter = Router();
 const clientController = new ClientController();
 
 DeleteRouter.delete(
-  "",
-  DeleteMiddleware,
+  "/delete/:id",
   clientController.delete.bind(clientController)
 );
 

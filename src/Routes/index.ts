@@ -10,7 +10,7 @@ const routes = Router();
 routes.use("/create", CreateRouter);
 routes.use("", ReadRouter);
 routes.use("/update", UpdateRouter);
-routes.use("/delete", DeleteRouter);
+routes.use("", DeleteRouter);
 
 routes.use((error: Response) => {
   if (error) {

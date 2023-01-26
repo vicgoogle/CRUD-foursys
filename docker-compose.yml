@@ -2,17 +2,20 @@ version: '3'
 
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:latest
     tty: true
-    container_name: localhost
+    container_name: crud-tg
     env_file:
       - .env
-    volumes:
-      - dbdata:/data/mysql
     ports:
       - ${MYSQL_ROOT_PORT}:3306
     networks:
       - app-network
+    environment:
+       MYSQL_ROOT_PASSWORD: 'pass'
+       MYSQL_DATABASE: 'db1'
+       MYSQL_USER: 'user'
+       MYSQL_PASSWORD: 'pass'
 
 networks:
   app-network:

@@ -9,7 +9,7 @@ export default function DeleteClientMiddleware(
 ): void {
   const deleteRequest = celebrate({
     [Segments.BODY]: {
-      id: Joi.string().required(),
+      id: Joi.string(),
     },
   });
 
