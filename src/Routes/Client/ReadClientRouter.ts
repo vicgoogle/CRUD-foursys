@@ -1,6 +1,6 @@
 import ClientController from "@src/Controllers/ClientController";
 import { Router } from "express";
-import ReadMiddleware from "@src/Middlewares/ReadMiddleware";
+import ReadMiddleware from "@src/Middlewares/Client/ReadClientMiddleware";
 
 const ReadRouter = Router();
 const clientController = new ClientController();

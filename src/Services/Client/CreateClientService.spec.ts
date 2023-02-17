@@ -1,6 +1,6 @@
 import AppError from "@src/Errors/AppError";
 import FakeClientsRepository from "@src/Repositories/FakeRepositories/FakeClientsRepository";
-import CreateService from "./CreateService";
+import CreateService from "./CreateClientService";
 
 let createService: CreateService;
 let fakeClientsRepository: FakeClientsRepository;

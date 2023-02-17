@@ -6,28 +6,13 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("client")
+@Entity("rent")
 class Client {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
-  name: string;
-
-  @Column()
-  birthDate: string;
-
-  @Column()
-  phone: string;
-
-  @Column()
-  address: string;
-
-  @Column()
-  cpf: string;
-
-  @Column()
-  email: string;
+  nameEquipment: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

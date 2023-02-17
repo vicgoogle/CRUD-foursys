@@ -11,6 +11,8 @@ export default function UpdateMiddleware(
     [Segments.BODY]: {
       id: Joi.string().required(),
       name: Joi.string().required(),
+      birthDate: Joi.string().required(),
+      address: Joi.string().required(),
       phone: Joi.string().required(),
       email: Joi.string().required(),
     },

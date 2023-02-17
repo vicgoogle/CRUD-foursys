@@ -11,6 +11,9 @@ export default function CreateMiddleware(
     [Segments.BODY]: {
       name: Joi.string().required(),
       phone: Joi.string().required(),
+      birthDate: Joi.string().required(),
+      cpf: Joi.string().required(),
+      address: Joi.string().required(),
       email: Joi.string().required(),
     },
   });

@@ -6,6 +6,9 @@ import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 interface IRequest {
   name: string;
   phone: string;
+  cpf: string;
+  birthDate: string;
+  address: string;
   email: string;
 }
 
@@ -16,7 +19,14 @@ export default class CreateService {
     private clientsRepository: IClientsRepository
   ) {}
 
-  public async execute({ name, phone, email }: IRequest): Promise<Client> {
+  public async execute({
+    name,
+    phone,
+    email,
+    cpf,
+    birthDate,
+    address,
+  }: IRequest): Promise<Client> {
     const findEmail = await this.clientsRepository.findByEmail(email);
 
     if (findEmail) {
@@ -26,6 +36,9 @@ export default class CreateService {
     const client = await this.clientsRepository.create({
       name,
       phone,
+      cpf,
+      birthDate,
+      address,
       email,
     });
 

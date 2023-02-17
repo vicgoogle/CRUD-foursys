@@ -1,6 +1,5 @@
 import ICreateClientDTO from "@src/DTOs/ICreateClientDTO";
 import Client from "@src/Entities/Client";
-import AppError from "@src/Errors/AppError";
 import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 import { getRepository, Repository } from "typeorm";
 

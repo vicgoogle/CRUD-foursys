@@ -1,23 +1,18 @@
 import { Request, Response } from "express";
-import CreateService from "@src/Services/Client/CreateClientService";
-import readService from "@src/Services/Client/ReadClientService";
-import DeleteService from "@src/Services/Client/DeleteClientService";
-import UpdateService from "@src/Services/Client/UpdateClientService";
+import CreateService from "@src/Services/Rent/CreateRentService";
+import readService from "@src/Services/Rent/ReadRentService";
+import DeleteService from "@src/Services/Rent/DeleteRentService";
+import UpdateService from "@src/Services/Rent/UpdateRentService";
 import { container } from "tsyringe";
 
 export default class ClientController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, phone, email, address, birthDate, cpf } = request.body;
+    const { nameEquipment } = request.body;
 
     const createClientService = container.resolve(CreateService);
 
     const createdClient = await createClientService.execute({
-      name,
-      phone,
-      email,
-      address,
-      birthDate,
-      cpf,
+      nameEquipment,
     });
 
     return response.json({ response: createdClient });
@@ -42,22 +37,17 @@ export default class ClientController {
 
     await deleteService.execute(id);
 
-    return response.json({ response: "Cliente excluido" });
+    return response.json({ response: "Equipamento excluido" });
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, name, phone, email, address, birthDate, cpf } = request.body;
+    const { id, nameEquipment } = request.body;
 
     const updateService = container.resolve(UpdateService);
 
     const updatedClient = await updateService.execute({
       id,
-      name,
-      phone,
-      email,
-      address,
-      birthDate,
-      cpf,
+      nameEquipment,
     });
 
     return response.json({ response: updatedClient });

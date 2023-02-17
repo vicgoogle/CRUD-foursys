@@ -1,15 +1,15 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors';
-import { errors } from 'celebrate';
-import 'express-async-errors';
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import { errors } from "celebrate";
+import "express-async-errors";
 
-import { createConnection } from 'typeorm';
-import routes from './Routes';
-import AppError from './Errors/AppError';
-import params from './ormconfig';
-import '@src/Container';
+import { createConnection } from "typeorm";
+import routes from "./Routes";
+import AppError from "./Errors/AppError";
+import params from "./ormconfig";
+import "@src/Container";
 
 const start = async () => {
   await createConnection(params);
@@ -27,10 +27,10 @@ const start = async () => {
       if (err instanceof AppError) {
         return response
           .status(err.statusCode)
-          .json({ status: 'error', message: err.message });
+          .json({ status: "error", message: err.message });
       }
 
-      return response.status(500).json({ status: 'error', err });
+      return response.status(500).json({ status: "error", err });
     }
   );
 

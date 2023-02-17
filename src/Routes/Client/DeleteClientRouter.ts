@@ -1,5 +1,4 @@
 import ClientController from "@src/Controllers/ClientController";
-import DeleteMiddleware from "@src/Middlewares/DeleteMiddleware";
 import { Router } from "express";
 
 const DeleteRouter = Router();
