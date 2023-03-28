@@ -6,31 +6,22 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("client")
-class Client {
+@Entity("equipment")
+class Equipment {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
-  name: string;
+  nameEquipment: string;
 
   @Column()
-  birthDate: string;
+  typeEquipment: string;
 
   @Column()
-  phone: string;
+  priceEquipment: number;
 
   @Column()
-  address: string;
-
-  @Column()
-  cpf: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  password: string;
+  nameClient: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
@@ -39,4 +30,4 @@ class Client {
   updatedAt: Date;
 }
 
-export default Client;
+export default Equipment;

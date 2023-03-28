@@ -2,19 +2,18 @@ import { NextFunction, Request, Response } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 import AppError from "@src/Errors/AppError";
 
-export default function CreateMiddleware(
+export default function DeleteClientMiddleware(
   request: Request,
   response: Response,
   next: NextFunction
 ): void {
-  const creationRequest = celebrate({
+  const deleteRequest = celebrate({
     [Segments.BODY]: {
-      nameEquipment: Joi.string().required(),
-      rentTime: Joi.number().required(),
+      id: Joi.string(),
     },
   });
 
-  creationRequest(request, response, (err: Express.Response) => {
+  deleteRequest(request, response, (err: Express.Response) => {
     if (err) {
       next(new AppError("Dados inválidos"));
     }

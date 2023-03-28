@@ -6,6 +6,7 @@ import Rent from "@src/Entities/Rent";
 interface IRequest {
   id: string;
   nameEquipment: string;
+  rentTime: string;
 }
 
 @injectable()
@@ -15,16 +16,20 @@ export default class UpdateService {
     private rentsRepository: IRentsRepository
   ) {}
 
-  public async execute({ id, nameEquipment }: IRequest): Promise<Rent> {
-    const findEquipment = await this.rentsRepository.findById(id);
+  public async execute({
+    id,
+    nameEquipment,
+    rentTime,
+  }: IRequest): Promise<Rent> {
+    const findRent = await this.rentsRepository.findById(id);
 
-    if (!findEquipment || !findEquipment.id) {
-      throw new AppError("Equipamento não encontrado");
+    if (!findRent || !findRent.id) {
+      throw new AppError("Aluguel não encontrado");
     }
 
-    findEquipment.nameEquipment = nameEquipment;
+    findRent.nameEquipment = nameEquipment;
 
-    const newRent = await this.rentsRepository.save(findEquipment);
+    const newRent = await this.rentsRepository.save(findRent);
 
     return newRent;
   }

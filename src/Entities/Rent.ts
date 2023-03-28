@@ -14,6 +14,9 @@ class Client {
   @Column()
   nameEquipment: string;
 
+  @Column()
+  rentTime: number;
+
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 

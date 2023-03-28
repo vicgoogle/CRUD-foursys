@@ -22,6 +22,12 @@ class RentsRepository implements IRentsRepository {
     return this.ormRepository.save(rent);
   }
 
+  public async list(): Promise<any> {
+    const foundRent = await this.ormRepository.find();
+
+    return foundRent;
+  }
+
   public async findById(id: string): Promise<Rent | undefined> {
     const foundRent = await this.ormRepository.findOne({
       where: { id },

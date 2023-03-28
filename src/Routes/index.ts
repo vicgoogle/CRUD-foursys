@@ -8,6 +8,10 @@ import ReadRentRouter from "./Rent/ReadRentRouter";
 import DeleteRentRouter from "./Rent/DeleteRentRouter";
 import CreateRentRouter from "./Rent/CreateRentRouter";
 import UpdateRentRouter from "./Rent/UpdateRentRouter";
+import ReadEquipmentRouter from "./Equipment/ReadEquipmentRouter";
+import DeleteEquipmentRouter from "./Equipment/DeleteEquipmentRouter";
+import CreateEquipmentRouter from "./Equipment/CreateEquipmentRouter";
+import UpdateequipmentRouter from "./Equipment/UpdateequipmentRouter";
 
 const routes = Router();
 
@@ -19,6 +23,10 @@ routes.use("/rent", CreateRentRouter);
 routes.use("/rent", ReadRentRouter);
 routes.use("/rent", UpdateRentRouter);
 routes.use("/rent", DeleteRentRouter);
+routes.use("/equipment", DeleteEquipmentRouter);
+routes.use("/equipment", CreateEquipmentRouter);
+routes.use("/equipment", ReadEquipmentRouter);
+routes.use("/equipment", UpdateequipmentRouter);
 
 routes.use((error: Response) => {
   if (error) {

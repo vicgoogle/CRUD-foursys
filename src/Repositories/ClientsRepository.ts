@@ -22,12 +22,12 @@ class ClientsRepository implements IClientsRepository {
     return this.ormRepository.save(client);
   }
 
-  public async findByEmail(email: string): Promise<Client | undefined> {
-    const foundEmail = await this.ormRepository.findOne({
-      where: { email },
+  public async findByName(name: string): Promise<Client | undefined> {
+    const foundName = await this.ormRepository.findOne({
+      where: { name },
     });
 
-    return foundEmail;
+    return foundName;
   }
 
   public async findById(id: string): Promise<Client | undefined> {

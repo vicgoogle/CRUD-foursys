@@ -5,28 +5,29 @@ import DeleteService from "@src/Services/Rent/DeleteRentService";
 import UpdateService from "@src/Services/Rent/UpdateRentService";
 import { container } from "tsyringe";
 
-export default class ClientController {
+export default class RentController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { nameEquipment } = request.body;
+    const { nameEquipment, rentTime } = request.body;
 
-    const createClientService = container.resolve(CreateService);
+    const createRentService = container.resolve(CreateService);
 
-    const createdClient = await createClientService.execute({
+    const createdRent = await createRentService.execute({
       nameEquipment,
+      rentTime,
     });
 
-    return response.json({ response: createdClient });
+    return response.json({ response: createdRent });
   }
 
   public async read(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const readClientService = container.resolve(readService);
+    const readRentService = container.resolve(readService);
 
-    const findClient = await readClientService.execute(id);
+    const findRent = await readRentService.execute(id);
 
     return response.json({
-      cliente: findClient,
+      cliente: findRent,
     });
   }
 
@@ -37,19 +38,19 @@ export default class ClientController {
 
     await deleteService.execute(id);
 
-    return response.json({ response: "Equipamento excluido" });
+    return response.json({ response: "Aluguel excluido" });
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, nameEquipment } = request.body;
+    const { id, nameEquipment, rentTime } = request.body;
 
     const updateService = container.resolve(UpdateService);
-
-    const updatedClient = await updateService.execute({
+    const updatedRent = await updateService.execute({
       id,
       nameEquipment,
+      rentTime,
     });
 
-    return response.json({ response: updatedClient });
+    return response.json({ response: updatedRent });
   }
 }

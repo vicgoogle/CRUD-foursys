@@ -1,23 +1,23 @@
 import { inject, injectable } from "tsyringe";
 import AppError from "@src/Errors/AppError";
-import IRentsRepository from "@src/RepositoryInterfaces/IRentsRepository";
+import IEquipmentsRepository from "@src/RepositoryInterfaces/IEquipmentsRepository";
 
 @injectable()
 export default class DeleteService {
   constructor(
-    @inject("RentsRepository")
-    private rentsRepository: IRentsRepository
+    @inject("EquipmentsRepository")
+    private equipmentsRepository: IEquipmentsRepository
   ) {}
 
   public async execute(id: string): Promise<void> {
-    const findClient = await this.rentsRepository.findById(id);
+    const findEquipment = await this.equipmentsRepository.findById(id);
 
-    if (!findClient || !findClient.id) {
+    if (!findEquipment || !findEquipment.id) {
       throw new AppError("Equipamento não encontrado");
     }
 
     try {
-      await this.rentsRepository.delete(findClient);
+      await this.equipmentsRepository.delete(findEquipment);
     } catch (error) {
       throw new AppError("Não foi possível excluir o equipamento");
     }

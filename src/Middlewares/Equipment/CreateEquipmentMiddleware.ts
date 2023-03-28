@@ -10,7 +10,9 @@ export default function CreateMiddleware(
   const creationRequest = celebrate({
     [Segments.BODY]: {
       nameEquipment: Joi.string().required(),
-      rentTime: Joi.number().required(),
+      typeEquipment: Joi.string().required(),
+      priceEquipment: Joi.number().required(),
+      nameClient: Joi.string().required(),
     },
   });
 

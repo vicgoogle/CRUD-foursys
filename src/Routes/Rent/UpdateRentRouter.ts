@@ -1,6 +1,6 @@
 import RentController from "@src/Controllers/RentController";
 import { Router } from "express";
-import UpdateMiddleware from "@src/Middlewares/Client/UpdateClientMiddleware";
+import UpdateMiddleware from "@src/Middlewares/Rent/UpdateRentMiddleware";
 
 const UpdateRouter = Router();
 const rentController = new RentController();

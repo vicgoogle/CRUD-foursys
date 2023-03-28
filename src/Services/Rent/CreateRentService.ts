@@ -5,6 +5,7 @@ import IRentsRepository from "@src/RepositoryInterfaces/IRentsRepository";
 
 interface IRequest {
   nameEquipment: string;
+  rentTime: number;
 }
 
 @injectable()
@@ -14,7 +15,7 @@ export default class CreateService {
     private rentsRepository: IRentsRepository
   ) {}
 
-  public async execute({ nameEquipment }: IRequest): Promise<Rent> {
+  public async execute({ nameEquipment, rentTime }: IRequest): Promise<Rent> {
     const findEmail = await this.rentsRepository.findById(nameEquipment);
 
     if (findEmail) {
@@ -23,6 +24,7 @@ export default class CreateService {
 
     const rent = await this.rentsRepository.create({
       nameEquipment,
+      rentTime,
     });
 
     return rent;
