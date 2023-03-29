@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import CreateService from "@src/Services/Equipment/CreateEquipmentService";
-import readService from "@src/Services/Equipment/ReadEquipmentService";
+import ReadService from "@src/Services/Equipment/ReadEquipmentService";
 import DeleteService from "@src/Services/Equipment/DeleteEquipmentService";
 import UpdateService from "@src/Services/Equipment/UpdateEquipmentService";
+import ListService from "@src/Services/Equipment/ListEquipmentService";
 import { container } from "tsyringe";
 
 export default class EquipmentController {
@@ -25,13 +26,23 @@ export default class EquipmentController {
   public async read(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const readEquipmentService = container.resolve(readService);
+    const readEquipmentService = container.resolve(ReadService);
 
     const findEquipment = await readEquipmentService.execute(id);
 
     return response.json({
       equipamento: findEquipment,
     });
+  }
+
+  public async list(_request: Request, response: Response): Promise<Response> {
+    const listEquipmentService = container.resolve(ListService);
+
+    const list = await listEquipmentService.execute();
+
+    console.log(list);
+
+    return response.json(list);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {

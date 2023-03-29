@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import AppError from "@src/Errors/AppError";
 import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 import Client from "@src/Entities/Client";
+import CryptoJS from "crypto-js";
 
 interface IRequest {
   id: string;
@@ -11,6 +12,7 @@ interface IRequest {
   cpf: string;
   address: string;
   email: string;
+  password: string;
 }
 
 @injectable()
@@ -27,6 +29,7 @@ export default class UpdateService {
     email,
     birthDate,
     cpf,
+    password,
   }: IRequest): Promise<Client> {
     const findClient = await this.clientsRepository.findById(id);
 
@@ -36,16 +39,14 @@ export default class UpdateService {
       throw new AppError("Cliente não encontrado");
     }
 
-    if (verifyClientEmail) {
-      throw new AppError("Email já encontrado");
-    }
+    const encrypted = CryptoJS.HmacMD5(password, "a1b2c3").toString();
 
     findClient.name = name;
     findClient.phone = phone;
     findClient.email = email;
     findClient.birthDate = birthDate;
     findClient.cpf = cpf;
-    findClient.address = cpf;
+    findClient.password = encrypted;
 
     const newClient = await this.clientsRepository.save(findClient);
 

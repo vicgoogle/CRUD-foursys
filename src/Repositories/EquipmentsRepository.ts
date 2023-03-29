@@ -22,7 +22,7 @@ class EquipmentsRepository implements IEquipmentsRepository {
     return this.ormRepository.save(equipment);
   }
 
-  public async list(): Promise<any> {
+  public async list(): Promise<Equipment[]> {
     const foundEquipments = await this.ormRepository.find();
 
     return foundEquipments;

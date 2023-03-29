@@ -1,5 +1,6 @@
 import ICreateClientDTO from "@src/DTOs/ICreateClientDTO";
 import Client from "@src/Entities/Client";
+import AppError from "@src/Errors/AppError";
 import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 import { getRepository, Repository } from "typeorm";
 
@@ -18,16 +19,35 @@ class ClientsRepository implements IClientsRepository {
     return client;
   }
 
+  public async loginByEmailAndPassword(
+    email: string,
+    password: string
+  ): Promise<Client | undefined> {
+    const foundEmail = await this.ormRepository.findOne({
+      where: { email },
+    });
+
+    if (!foundEmail) {
+      throw new AppError("Usuário não encontrado");
+    }
+
+    const login = await this.ormRepository.findOne({
+      where: { email, password },
+    });
+
+    return login;
+  }
+
   public async save(client: Client): Promise<Client> {
     return this.ormRepository.save(client);
   }
 
-  public async findByName(name: string): Promise<Client | undefined> {
-    const foundName = await this.ormRepository.findOne({
-      where: { name },
+  public async findByEmail(email: string): Promise<Client | undefined> {
+    const foundUser = await this.ormRepository.findOne({
+      where: { email },
     });
 
-    return foundName;
+    return foundUser;
   }
 
   public async findById(id: string): Promise<Client | undefined> {

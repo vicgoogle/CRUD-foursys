@@ -3,11 +3,14 @@ import CreateService from "@src/Services/Client/CreateClientService";
 import readService from "@src/Services/Client/ReadClientService";
 import DeleteService from "@src/Services/Client/DeleteClientService";
 import UpdateService from "@src/Services/Client/UpdateClientService";
+import LoginService from "@src/Services/Client/LoginService";
 import { container } from "tsyringe";
+import AppError from "@src/Errors/AppError";
 
 export default class ClientController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, phone, email, address, birthDate, cpf } = request.body;
+    const { name, phone, email, address, birthDate, cpf, password } =
+      request.body;
 
     const createClientService = container.resolve(CreateService);
 
@@ -18,9 +21,26 @@ export default class ClientController {
       address,
       birthDate,
       cpf,
+      password,
     });
 
     return response.json({ response: createdClient });
+  }
+
+  public async login(request: Request, response: Response): Promise<Response> {
+    const { email, password } = request.body;
+
+    const loginClientService = container.resolve(LoginService);
+
+    const loggedUser = await loginClientService.execute(email, password);
+
+    if (!loggedUser) {
+      throw new AppError("Usuário não encontrado");
+    }
+
+    return response.json({
+      response: "Login efetuado!",
+    });
   }
 
   public async read(request: Request, response: Response): Promise<Response> {
@@ -46,7 +66,8 @@ export default class ClientController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, name, phone, email, address, birthDate, cpf } = request.body;
+    const { id, name, phone, email, address, birthDate, cpf, password } =
+      request.body;
 
     const updateService = container.resolve(UpdateService);
 
@@ -58,6 +79,7 @@ export default class ClientController {
       address,
       birthDate,
       cpf,
+      password,
     });
 
     return response.json({ response: updatedClient });
