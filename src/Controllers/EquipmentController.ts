@@ -40,8 +40,6 @@ export default class EquipmentController {
 
     const list = await listEquipmentService.execute();
 
-    console.log(list);
-
     return response.json(list);
   }
 

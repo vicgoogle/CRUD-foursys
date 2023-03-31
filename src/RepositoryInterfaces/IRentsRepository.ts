@@ -5,5 +5,6 @@ export default interface IRentsRepository {
   create(data: ICreateRentDTO): Promise<Rent>;
   save(rent: Rent): Promise<Rent>;
   delete(rent: Rent): Promise<void>;
+  list(): Promise<Rent[]>;
   findById(id: string): Promise<Rent | undefined>;
 }

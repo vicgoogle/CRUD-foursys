@@ -4,6 +4,7 @@ import readService from "@src/Services/Rent/ReadRentService";
 import DeleteService from "@src/Services/Rent/DeleteRentService";
 import UpdateService from "@src/Services/Rent/UpdateRentService";
 import { container } from "tsyringe";
+import ListService from "@src/Services/Rent/ListRentService";
 
 export default class RentController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -29,6 +30,14 @@ export default class RentController {
     return response.json({
       cliente: findRent,
     });
+  }
+
+  public async list(_request: Request, response: Response): Promise<Response> {
+    const ListRentService = container.resolve(ListService);
+
+    const list = await ListRentService.execute();
+
+    return response.json(list);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
