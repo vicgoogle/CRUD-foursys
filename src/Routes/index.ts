@@ -10,11 +10,14 @@ import DeleteRentRouter from "./Rent/DeleteRentRouter";
 import CreateRentRouter from "./Rent/CreateRentRouter";
 import UpdateRentRouter from "./Rent/UpdateRentRouter";
 import ListRentRouter from "./Rent/ListRentRouter";
+import ListRentByClientRouter from "./Rent/ListRentByClientRouter";
 import ReadEquipmentRouter from "./Equipment/ReadEquipmentRouter";
 import DeleteEquipmentRouter from "./Equipment/DeleteEquipmentRouter";
 import CreateEquipmentRouter from "./Equipment/CreateEquipmentRouter";
 import UpdateequipmentRouter from "./Equipment/UpdateequipmentRouter";
+import WriteOffEquipmentRouter from "./Equipment/WriteOffEquipmentRouter";
 import ListEquipmentRouter from "./Equipment/ListEquipmentRouter";
+import ListEquipmentByClientRouter from "./Equipment/ListEquipmentByClientRouter";
 
 const routes = Router();
 
@@ -28,11 +31,14 @@ routes.use("/rent", ReadRentRouter);
 routes.use("/rent", UpdateRentRouter);
 routes.use("/rent", DeleteRentRouter);
 routes.use("/rent", ListRentRouter);
+routes.use("/rent", ListRentByClientRouter);
 routes.use("/equipment", DeleteEquipmentRouter);
 routes.use("/equipment", CreateEquipmentRouter);
 routes.use("/equipment", ReadEquipmentRouter);
 routes.use("/equipment", ListEquipmentRouter);
+routes.use("/equipment", ListEquipmentByClientRouter);
 routes.use("/equipment", UpdateequipmentRouter);
+routes.use("/equipment", WriteOffEquipmentRouter);
 
 routes.use((error: Response) => {
   if (error) {

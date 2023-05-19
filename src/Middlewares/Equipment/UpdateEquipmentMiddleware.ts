@@ -13,7 +13,7 @@ export default function UpdateMiddleware(
       nameEquipment: Joi.string().required(),
       typeEquipment: Joi.string().required(),
       priceEquipment: Joi.number().required(),
-      nameClient: Joi.string().required(),
+      photo: Joi.string().required(),
     },
   });
 

@@ -1,4 +1,5 @@
 import ICreateRentDTO from "@src/DTOs/ICreateRentDTO";
+import Equipment from "@src/Entities/Equipment";
 import Rent from "@src/Entities/Rent";
 import IRentsRepository from "@src/RepositoryInterfaces/IRentsRepository";
 import { getRepository, Repository } from "typeorm";
@@ -24,6 +25,14 @@ class RentsRepository implements IRentsRepository {
 
   public async list(): Promise<any> {
     const foundRent = await this.ormRepository.find();
+
+    return foundRent;
+  }
+
+  public async findByClientId(client: string): Promise<Rent[] | undefined> {
+    const foundRent = await this.ormRepository.find({
+      where: { client },
+    });
 
     return foundRent;
   }

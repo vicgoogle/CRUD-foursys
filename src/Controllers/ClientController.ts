@@ -38,9 +38,7 @@ export default class ClientController {
       throw new AppError("Usuário não encontrado");
     }
 
-    return response.json({
-      response: "Login efetuado!",
-    });
+    return response.json(loggedUser);
   }
 
   public async read(request: Request, response: Response): Promise<Response> {

@@ -10,8 +10,8 @@ export default function UpdateMiddleware(
   const updateRequest = celebrate({
     [Segments.BODY]: {
       id: Joi.string().required(),
-      nameEquipment: Joi.string().required(),
-      rentTime: Joi.number().required(),
+      dateStart: Joi.string().required(),
+      dateEnd: Joi.string().required(),
     },
   });
 

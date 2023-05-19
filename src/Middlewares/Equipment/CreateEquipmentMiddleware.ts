@@ -12,7 +12,9 @@ export default function CreateMiddleware(
       nameEquipment: Joi.string().required(),
       typeEquipment: Joi.string().required(),
       priceEquipment: Joi.number().required(),
-      nameClient: Joi.string().required(),
+      description: Joi.string().required(),
+      client: Joi.string().required(),
+      photo: Joi.string().required(),
     },
   });
 

@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export default class Client1648796514401 implements MigrationInterface {
+export default class Client1648796514400 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -26,7 +26,7 @@ export default class Client1648796514401 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "birthDate",
+            name: "birth_date",
             type: "varchar",
           },
           {

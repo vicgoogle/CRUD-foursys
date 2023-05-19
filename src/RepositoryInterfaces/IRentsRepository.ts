@@ -6,5 +6,6 @@ export default interface IRentsRepository {
   save(rent: Rent): Promise<Rent>;
   delete(rent: Rent): Promise<void>;
   list(): Promise<Rent[]>;
-  findById(id: string): Promise<Rent | undefined>;
+  findByClientId(client: string | undefined): Promise<Rent[] | undefined>;
+  findById(id: string | undefined): Promise<Rent | undefined>;
 }

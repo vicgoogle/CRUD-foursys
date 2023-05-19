@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import Rent from "./Rent";
+import Equipment from "./Equipment";
 
 @Entity("client")
 class Client {
@@ -14,7 +17,7 @@ class Client {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ name: "birth_date" })
   birthDate: string;
 
   @Column()
@@ -25,6 +28,12 @@ class Client {
 
   @Column()
   cpf: string;
+
+  @OneToMany(() => Rent, (rent) => rent.client)
+  rents: Rent[];
+
+  @OneToMany(() => Equipment, (equipment) => equipment.client)
+  equipments: Equipment[];
 
   @Column()
   email: string;

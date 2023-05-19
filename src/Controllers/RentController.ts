@@ -5,16 +5,19 @@ import DeleteService from "@src/Services/Rent/DeleteRentService";
 import UpdateService from "@src/Services/Rent/UpdateRentService";
 import { container } from "tsyringe";
 import ListService from "@src/Services/Rent/ListRentService";
+import ListByClientService from "@src/Services/Rent/ListRentByClientService";
 
 export default class RentController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { nameEquipment, rentTime } = request.body;
+    const { equipment, client, dateStart, dateEnd } = request.body;
 
     const createRentService = container.resolve(CreateService);
 
     const createdRent = await createRentService.execute({
-      nameEquipment,
-      rentTime,
+      equipment,
+      client,
+      dateStart,
+      dateEnd,
     });
 
     return response.json({ response: createdRent });
@@ -40,6 +43,21 @@ export default class RentController {
     return response.json(list);
   }
 
+  public async listByClient(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { client } = request.params;
+
+    const ListRentService = container.resolve(ListByClientService);
+
+    const list = await ListRentService.execute(client);
+
+    console.log(list);
+
+    return response.json(list);
+  }
+
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
@@ -51,13 +69,14 @@ export default class RentController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, nameEquipment, rentTime } = request.body;
+    const { id, nameEquipment, dateStart, dateEnd } = request.body;
 
     const updateService = container.resolve(UpdateService);
     const updatedRent = await updateService.execute({
       id,
       nameEquipment,
-      rentTime,
+      dateStart,
+      dateEnd,
     });
 
     return response.json({ response: updatedRent });

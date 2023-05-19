@@ -28,6 +28,16 @@ class EquipmentsRepository implements IEquipmentsRepository {
     return foundEquipments;
   }
 
+  public async findByClientId(
+    client: string
+  ): Promise<Equipment[] | undefined> {
+    const foundEquipment = await this.ormRepository.find({
+      where: { client },
+    });
+
+    return foundEquipment;
+  }
+
   public async findByEmail(email: string): Promise<Equipment | undefined> {
     const foundEmail = await this.ormRepository.findOne({
       where: { email },

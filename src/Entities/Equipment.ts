@@ -4,24 +4,37 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import Client from "./Client";
 
 @Entity("equipment")
 class Equipment {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ name: "name_equipment" })
   nameEquipment: string;
 
-  @Column()
+  @Column({ name: "type_equipment" })
   typeEquipment: string;
 
-  @Column()
+  @Column({ name: "price_equipment" })
   priceEquipment: number;
 
+  @Column({ name: "description_equipment" })
+  description: string;
+
+  @ManyToOne(() => Client, (client: Client) => client.id)
+  @JoinColumn({ name: "client_id" })
+  client: Client;
+
+  @Column({ name: "is_rented" })
+  isRented: boolean;
+
   @Column()
-  nameClient: string;
+  photo: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

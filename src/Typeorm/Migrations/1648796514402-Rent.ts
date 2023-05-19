@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from "typeorm";
 
 export default class Rent1648796514402 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -14,11 +19,23 @@ export default class Rent1648796514402 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "nameEquipment",
+            name: "equipment_id",
             type: "varchar",
           },
           {
-            name: "rentTime",
+            name: "name_equipment",
+            type: "varchar",
+          },
+          {
+            name: "client_id",
+            type: "varchar",
+          },
+          {
+            name: "date_start",
+            type: "varchar",
+          },
+          {
+            name: "date_end",
             type: "varchar",
           },
           {
@@ -32,6 +49,22 @@ export default class Rent1648796514402 implements MigrationInterface {
             default: "now()",
           },
         ],
+      })
+    );
+    await queryRunner.createForeignKey(
+      "rent",
+      new TableForeignKey({
+        columnNames: ["equipment_id"],
+        referencedTableName: "equipment",
+        referencedColumnNames: ["id"],
+      })
+    );
+    await queryRunner.createForeignKey(
+      "rent",
+      new TableForeignKey({
+        columnNames: ["client_id"],
+        referencedTableName: "client",
+        referencedColumnNames: ["id"],
       })
     );
   }
