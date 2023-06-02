@@ -10,7 +10,9 @@ interface IRequest {
   phone: string;
   birthDate: string;
   cpf: string;
-  address: string;
+  zipCode: string;
+  number: string;
+  complement: string;
   email: string;
   password: string;
 }

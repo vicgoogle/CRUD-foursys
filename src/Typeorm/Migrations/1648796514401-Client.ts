@@ -1,15 +1,10 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export default class Equipment1648796514401 implements MigrationInterface {
+export default class Client1648796514401 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "equipment",
+        name: "client",
         columns: [
           {
             name: "id",
@@ -19,32 +14,39 @@ export default class Equipment1648796514401 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "name_equipment",
+            name: "name",
             type: "varchar",
           },
           {
-            name: "type_equipment",
+            name: "phone",
             type: "varchar",
           },
           {
-            name: "price_equipment",
+            name: "email",
             type: "varchar",
           },
           {
-            name: "description_equipment",
+            name: "birth_date",
             type: "varchar",
           },
           {
-            name: "client_id",
+            name: "zip_code",
             type: "varchar",
           },
           {
-            name: "is_rented",
-            type: "boolean",
-            default: "false",
+            name: "number",
+            type: "varchar",
           },
           {
-            name: "photo",
+            name: "complement",
+            type: "varchar",
+          },
+          {
+            name: "cpf",
+            type: "varchar",
+          },
+          {
+            name: "password",
             type: "varchar",
           },
           {
@@ -60,17 +62,9 @@ export default class Equipment1648796514401 implements MigrationInterface {
         ],
       })
     );
-    await queryRunner.createForeignKey(
-      "equipment",
-      new TableForeignKey({
-        columnNames: ["client_id"],
-        referencedTableName: "client",
-        referencedColumnNames: ["id"],
-      })
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("equipment");
+    await queryRunner.dropTable("client");
   }
 }

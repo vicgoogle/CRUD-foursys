@@ -9,8 +9,18 @@ import AppError from "@src/Errors/AppError";
 
 export default class ClientController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, phone, email, address, birthDate, cpf, password } =
-      request.body;
+    const {
+      name,
+      phone,
+      email,
+      birthDate,
+      zipCode,
+      number,
+      complement,
+      cpf,
+      password,
+    } = request.body;
+
 
     const createClientService = container.resolve(CreateService);
 
@@ -18,8 +28,10 @@ export default class ClientController {
       name,
       phone,
       email,
-      address,
       birthDate,
+      zipCode,
+      number,
+      complement,
       cpf,
       password,
     });
@@ -64,8 +76,18 @@ export default class ClientController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, name, phone, email, address, birthDate, cpf, password } =
-      request.body;
+    const {
+      id,
+      name,
+      phone,
+      email,
+      birthDate,
+      zipCode,
+      number,
+      complement,
+      cpf,
+      password,
+    } = request.body;
 
     const updateService = container.resolve(UpdateService);
 
@@ -74,8 +96,10 @@ export default class ClientController {
       name,
       phone,
       email,
-      address,
       birthDate,
+      zipCode,
+      number,
+      complement,
       cpf,
       password,
     });

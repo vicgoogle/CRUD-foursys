@@ -5,23 +5,21 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
 import Rent from "./Rent";
 import Equipment from "./Equipment";
+import Client from "./Client";
 
-@Entity("client")
-class Client {
+@Entity("address")
+class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
-  name: string;
-
-  @Column({ name: "birth_date" })
-  birthDate: string;
-
-  @Column()
-  phone: string;
+  @OneToOne(() => Client, (client: Client) => client.id)
+  @JoinColumn({ name: "client_id" })
+  client: Client;
 
   @Column({ name: "zip_code" })
   zipCode: string;
@@ -32,21 +30,6 @@ class Client {
   @Column()
   complement: string;
 
-  @Column()
-  cpf: string;
-
-  @OneToMany(() => Rent, (rent) => rent.client)
-  rents: Rent[];
-
-  @OneToMany(() => Equipment, (equipment) => equipment.client)
-  equipments: Equipment[];
-
-  @Column()
-  email: string;
-
-  @Column()
-  password: string;
-
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
@@ -54,4 +37,4 @@ class Client {
   updatedAt: Date;
 }
 
-export default Client;
+export default Address;

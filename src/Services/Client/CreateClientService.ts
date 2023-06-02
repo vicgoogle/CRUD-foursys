@@ -3,13 +3,16 @@ import Client from "@src/Entities/Client";
 import AppError from "@src/Errors/AppError";
 import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 import CryptoJS from "crypto-js";
+import IAddressRepository from "@src/RepositoryInterfaces/IAddressRepository";
 
 interface IRequest {
   name: string;
   phone: string;
   cpf: string;
   birthDate: string;
-  address: string;
+  zipCode: string;
+  number: string;
+  complement: string;
   email: string;
   password: string;
 }
@@ -18,7 +21,9 @@ interface IRequest {
 export default class CreateService {
   constructor(
     @inject("ClientsRepository")
-    private clientsRepository: IClientsRepository
+    private clientsRepository: IClientsRepository,
+    @inject("AddressRepository")
+    private addressRepository: IAddressRepository
   ) {}
 
   public async execute({
@@ -27,13 +32,15 @@ export default class CreateService {
     email,
     cpf,
     birthDate,
-    address,
+    zipCode,
+    number,
+    complement,
     password,
   }: IRequest): Promise<Client> {
-    const findEmail = await this.clientsRepository.findByEmail(email);
+    const findEmail = await this.clientsRepository.findByCpf(cpf);
 
     if (findEmail) {
-      throw new AppError("Email já encontrado");
+      throw new AppError("Usuário já cadastrado no sistema");
     }
 
     const encrypted = CryptoJS.HmacMD5(password, "a1b2c3").toString();
@@ -43,9 +50,18 @@ export default class CreateService {
       phone,
       cpf,
       birthDate,
-      address,
+      zipCode,
+      number,
+      complement,
       email,
       password: encrypted,
+    });
+
+    await this.addressRepository.create({
+      zipCode,
+      number,
+      complement,
+      client,
     });
 
     return client;

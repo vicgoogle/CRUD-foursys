@@ -10,14 +10,9 @@ export default function UpdateMiddleware(
   const updateRequest = celebrate({
     [Segments.BODY]: {
       id: Joi.string().required(),
-      name: Joi.string().required(),
-      birthDate: Joi.string().required(),
       zipCode: Joi.string().required(),
       number: Joi.string().required(),
       complement: Joi.string().required(),
-      phone: Joi.string().required(),
-      email: Joi.string().required(),
-      password: Joi.string().required(),
     },
   });
 

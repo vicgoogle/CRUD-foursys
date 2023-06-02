@@ -1,10 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from "typeorm";
 
-export default class Client1648796514400 implements MigrationInterface {
+export default class Rent1648796514403 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "client",
+        name: "rent",
         columns: [
           {
             name: "id",
@@ -14,31 +19,23 @@ export default class Client1648796514400 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "name",
+            name: "equipment_id",
             type: "varchar",
           },
           {
-            name: "phone",
+            name: "name_equipment",
             type: "varchar",
           },
           {
-            name: "email",
+            name: "client_id",
             type: "varchar",
           },
           {
-            name: "birth_date",
+            name: "date_start",
             type: "varchar",
           },
           {
-            name: "address",
-            type: "varchar",
-          },
-          {
-            name: "cpf",
-            type: "varchar",
-          },
-          {
-            name: "password",
+            name: "date_end",
             type: "varchar",
           },
           {
@@ -54,9 +51,25 @@ export default class Client1648796514400 implements MigrationInterface {
         ],
       })
     );
+    await queryRunner.createForeignKey(
+      "rent",
+      new TableForeignKey({
+        columnNames: ["equipment_id"],
+        referencedTableName: "equipment",
+        referencedColumnNames: ["id"],
+      })
+    );
+    await queryRunner.createForeignKey(
+      "rent",
+      new TableForeignKey({
+        columnNames: ["client_id"],
+        referencedTableName: "client",
+        referencedColumnNames: ["id"],
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("client");
+    await queryRunner.dropTable("rent");
   }
 }

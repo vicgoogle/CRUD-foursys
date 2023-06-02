@@ -18,6 +18,11 @@ import UpdateequipmentRouter from "./Equipment/UpdateequipmentRouter";
 import WriteOffEquipmentRouter from "./Equipment/WriteOffEquipmentRouter";
 import ListEquipmentRouter from "./Equipment/ListEquipmentRouter";
 import ListEquipmentByClientRouter from "./Equipment/ListEquipmentByClientRouter";
+import ReadAddressRouter from "./Address/ReadAddressRouter";
+import DeleteAddressRouter from "./Address/DeleteAddressRouter";
+import CreateAddressRouter from "./Address/CreateAddressRouter";
+import UpdateAddressRouter from "./Address/UpdateAddressRouter";
+import ListAddressRouter from "./Address/ListAddressByClientRouter";
 
 const routes = Router();
 
@@ -39,6 +44,11 @@ routes.use("/equipment", ListEquipmentRouter);
 routes.use("/equipment", ListEquipmentByClientRouter);
 routes.use("/equipment", UpdateequipmentRouter);
 routes.use("/equipment", WriteOffEquipmentRouter);
+routes.use("/address", CreateAddressRouter);
+routes.use("/address", ReadAddressRouter);
+routes.use("/address", UpdateAddressRouter);
+routes.use("/address", DeleteAddressRouter);
+routes.use("/address", ListAddressRouter);
 
 routes.use((error: Response) => {
   if (error) {

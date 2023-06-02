@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from "typeorm";
 
-export default class Rent1648796514402 implements MigrationInterface {
+export default class Equipment1648796514402 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "rent",
+        name: "equipment",
         columns: [
           {
             name: "id",
@@ -19,11 +19,19 @@ export default class Rent1648796514402 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "equipment_id",
+            name: "name_equipment",
             type: "varchar",
           },
           {
-            name: "name_equipment",
+            name: "type_equipment",
+            type: "varchar",
+          },
+          {
+            name: "price_equipment",
+            type: "varchar",
+          },
+          {
+            name: "description_equipment",
             type: "varchar",
           },
           {
@@ -31,11 +39,12 @@ export default class Rent1648796514402 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "date_start",
-            type: "varchar",
+            name: "is_rented",
+            type: "boolean",
+            default: "false",
           },
           {
-            name: "date_end",
+            name: "photo",
             type: "varchar",
           },
           {
@@ -52,15 +61,7 @@ export default class Rent1648796514402 implements MigrationInterface {
       })
     );
     await queryRunner.createForeignKey(
-      "rent",
-      new TableForeignKey({
-        columnNames: ["equipment_id"],
-        referencedTableName: "equipment",
-        referencedColumnNames: ["id"],
-      })
-    );
-    await queryRunner.createForeignKey(
-      "rent",
+      "equipment",
       new TableForeignKey({
         columnNames: ["client_id"],
         referencedTableName: "client",
@@ -70,6 +71,6 @@ export default class Rent1648796514402 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("rent");
+    await queryRunner.dropTable("equipment");
   }
 }

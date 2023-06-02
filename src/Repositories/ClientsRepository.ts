@@ -1,4 +1,5 @@
 import ICreateClientDTO from "@src/DTOs/ICreateClientDTO";
+import Address from "@src/Entities/Address";
 import Client from "@src/Entities/Client";
 import AppError from "@src/Errors/AppError";
 import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
@@ -42,17 +43,17 @@ class ClientsRepository implements IClientsRepository {
     return this.ormRepository.save(client);
   }
 
-  public async findByEmail(email: string): Promise<Client | undefined> {
+  public async findByCpf(cpf: string): Promise<Client | undefined> {
     const foundUser = await this.ormRepository.findOne({
-      where: { email },
+      where: { cpf },
     });
 
     return foundUser;
   }
 
-  public async findById(id: string): Promise<Client | undefined> {
+  public async findById(cpf: string): Promise<Client | undefined> {
     const foundClient = await this.ormRepository.findOne({
-      where: { id },
+      where: { cpf },
     });
 
     return foundClient;

@@ -9,6 +9,6 @@ export default interface IClientsRepository {
     email: string,
     password: string
   ): Promise<Client | undefined>;
-  findByEmail(email: string): Promise<Client | undefined>;
+  findByCpf(cpf: string): Promise<Client | undefined>;
   findById(id: string): Promise<Client | undefined>;
 }

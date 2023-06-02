@@ -6,6 +6,8 @@ import IClientsRepository from "@src/RepositoryInterfaces/IClientsRepository";
 import IRentsRepository from "@src/RepositoryInterfaces/IRentsRepository";
 import IEquipmentsRepository from "@src/RepositoryInterfaces/IEquipmentsRepository";
 import EquipmentsRepository from "@src/Repositories/EquipmentsRepository";
+import IAddressRepository from "@src/RepositoryInterfaces/IAddressRepository";
+import AddressRepository from "@src/Repositories/AddressRepository";
 
 container.registerSingleton<IClientsRepository>(
   "ClientsRepository",
@@ -20,4 +22,9 @@ container.registerSingleton<IRentsRepository>(
 container.registerSingleton<IEquipmentsRepository>(
   "EquipmentsRepository",
   EquipmentsRepository
+);
+
+container.registerSingleton<IAddressRepository>(
+  "AddressRepository",
+  AddressRepository
 );
