@@ -26,6 +26,5 @@ jobs:
         uses: gsactions/commit-message-checker@v2
         with:
           pattern: '^[A-Z]+-\d{1,}\([A-Za-z]+\): .+$'
-          flags: 'gm'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
      
