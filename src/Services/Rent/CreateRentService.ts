@@ -44,7 +44,8 @@ export default class CreateService {
     }
 
     //    if (findEquipment.isRented) {
-    //      throw new AppError("Equipamento já alugado");aaas
+    //      throw new AppError("Equipamento já alugado");aaasa
+  
     //    }
 
     findEquipment.isRented = true;
