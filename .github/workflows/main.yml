@@ -26,4 +26,6 @@ jobs:
         uses: gsactions/commit-message-checker@v2
         with:
           pattern: '[A-Z]+-\d{1,}\([A-Za-z]+\): .+$'
+          excludeDescription: 'true' # optional: this excludes the description body of a pull request
+          excludeTitle: 'true' # optional: this excludes the title of a pull request
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
