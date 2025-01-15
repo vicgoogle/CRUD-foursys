@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Commit Type
-        uses: vicgoogle/commit-message-checker@v2
+        uses: vicgoogle/message-checker@v1
         with:
           pattern: '[A-Z]+-\d{1,}\([A-Za-z]+\): .+$'
           excludeDescription: 'true' # optional: this excludes the description body of a pull request
