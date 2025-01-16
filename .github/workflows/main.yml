@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Commit Type
-        uses: gsactions/commit-message-checker@v2
+        uses: vicgoogle/commit-checker@v1
         with:
-          pattern: '[A-Z]+-\d{1,}\([A-Za-z]+\): .+$'
-          checkAllCommitMessages: 'true' # optional: this checks all commits associated with a pull request
-          accessToken: ${{ secrets.GITHUB_TOKEN }} # github access token is only required if checkAllCommitMessages is true
+          pattern: '\([A-Z])\w+
+          excludeDescription: 'true' # optional: this excludes the description body of a pull request
+          excludeTitle: 'true' # optional: this excludes the title of a pull request
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
