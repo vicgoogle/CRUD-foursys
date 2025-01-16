@@ -25,7 +25,7 @@ jobs:
       - name: Check Commit Type
         uses: vicgoogle/commit-checker@v3
         with:
-          pattern: '\([A-Z])\w+'
+          pattern: '^[A-Z]+-\d{1,}\([A-Za-z]+\): .+$'
           excludeDescription: 'true' # optional: this excludes the description body of a pull request
           excludeTitle: 'true' # optional: this excludes the title of a pull request
           checkAllCommitMessages: 'true' # optional: this checks all commits associated with a pull request
