@@ -25,6 +25,7 @@ jobs:
       - name: Check Commit Type
         uses: vicgoogle/commit-checker@v1
         with:
+          pattern: '\([A-Z])\w+'
           excludeDescription: 'true' # optional: this excludes the description body of a pull request
           excludeTitle: 'true' # optional: this excludes the title of a pull request
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
