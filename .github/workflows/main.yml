@@ -6,19 +6,13 @@ on:
       - edited
       - reopened
       - synchronize
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - reopened
-      - synchronize
 jobs:
   check-commit-message:
     name: Check Commit Message
     runs-on: ubuntu-latest
     steps:
       - name: Check Commit Type
-        uses: vicgoogle/commit-checker@v12
+        uses: vicgoogle/commit-checker@Test
         with:
           pattern: '[A-Za-z0-9]+-[0-9]+\([A-Za-z]+\): [A-Za-z]+'
           accessToken: ${{ secrets.GITHUB_TOKEN }} 
