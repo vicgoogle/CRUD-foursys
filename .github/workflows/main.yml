@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Commit Type
-        uses: vicgoogle/commit-checker@Test
+        uses: vicgoogle/commit-checker@3b7bfce916f09777f82c4a9efb3913f992f4a096
+
         with:
           pattern: '[A-Za-z0-9]+-[0-9]+\([A-Za-z]+\): [A-Za-z]+'
           accessToken: ${{ secrets.GITHUB_TOKEN }} 
